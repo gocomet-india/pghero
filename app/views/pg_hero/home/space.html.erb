@@ -18,7 +18,9 @@
 
   <% if @unused_indexes.any? %>
     <p>
-      <%= pluralize(@unused_indexes.size, "unused index") %>. Remove them
+      <i>
+        <%= Array(@unused_index_names)[0..3].join(', ') %><span title="<%= Array(@unused_index_names)[0..].join(', ') %>>">...</span> unused index
+      </i>. Remove them
       <% if @show_migrations %>
         <a href="#" class="migration-link">with a migration</a>
       <% end %>
@@ -34,6 +36,21 @@
       <p>And paste</p>
       <pre><% @unused_indexes.sort_by { |q| [-q[:size_bytes], q[:index]] }.each do |query| %>
 <%= pghero_remove_index(query) %><% end %></pre>
+    </div>
+  <% end %>
+
+  <%= form_with method: :get do |form| %>
+    <div>
+      <%= form.label :schema, "Choose a schema:" %>
+      <%= form.select :schema, options_for_select(@all_schemas, @schema) %>
+    </div>
+    <div>
+      <%= form.label :type, "Choose a Type:" %>
+      <%= form.select :type, options_for_select(['table', 'index'], @type) %>
+    </div>
+
+    <div>
+      <%= form.submit "Submit" %>
     </div>
   <% end %>
 

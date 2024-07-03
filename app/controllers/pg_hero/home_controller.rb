@@ -84,26 +84,31 @@ module PgHero
 
     def space
       @title = "Space"
-      @days = (params[:days] || 7).to_i
+      @days = (params['days'] || 7).to_i
       @database_size = @database.database_size
-      @only_tables = params[:tables].present?
-      @relation_sizes, @sizes_timeout = rescue_timeout([]) { @only_tables ? @database.table_sizes : @database.relation_sizes }
+      @selected_schema = params['schema'] if params[:schema].present?
+      @schema = params['schema'].presence
+      @type = params['type'].presence
+      @only_tables = @type == 'table'
+      @only_indexes = @type == 'index'
+      @relation_sizes, @sizes_timeout = rescue_timeout([]) { @only_tables ? @database.table_sizes(schema: @schema) : @database.relation_sizes(schema: @schema, type: @type) }
+      @all_schemas = rescue_timeout([]) { @database.all_schemas.map {|r| r[:schema_name]} }.first
       @space_stats_enabled = @database.space_stats_enabled? && !@only_tables
       if @space_stats_enabled
         space_growth = @database.space_growth(days: @days, relation_sizes: @relation_sizes)
         @growth_bytes_by_relation = space_growth.to_h { |r| [[r[:schema], r[:relation]], r[:growth_bytes]] }
-        if params[:sort] == "growth"
+        if params['sort'] == "growth"
           @relation_sizes.sort_by! { |r| s = @growth_bytes_by_relation[[r[:schema], r[:relation]]]; [s ? 0 : 1, -s.to_i, r[:schema], r[:relation]] }
         end
       end
 
-      if params[:sort] == "name"
+      if params['sort'] == "name"
         @relation_sizes.sort_by! { |r| r[:relation] || r[:table] }
       end
 
       @header_options = @only_tables ? {tables: "t"} : {}
 
-      across = params[:across].to_s.split(",")
+      across = params['across'].to_s.split(",")
       @unused_indexes = @database.unused_indexes(max_scans: 0, across: across)
       @unused_index_names = Set.new(@unused_indexes.map { |r| r[:index] })
       @show_migrations = PgHero.show_migrations

@@ -5,7 +5,21 @@ module PgHero
         PgHero.pretty_size select_one("SELECT pg_database_size(current_database())")
       end
 
-      def relation_sizes
+      def all_schemas
+        select_all <<~SQL
+          SELECT schema_name
+          FROM information_schema.schemata;
+        SQL
+      end
+
+      def relation_sizes(type: nil, schema: nil)
+        filtered_type = if type == 'table'
+          "'r'"
+        elsif type == 'index'
+          "'i'"
+        else
+          "'r', 'm', 'i'"
+        end
         select_all_size <<~SQL
           SELECT
             n.nspname AS schema,
@@ -19,14 +33,15 @@ module PgHero
           WHERE
             n.nspname NOT IN ('pg_catalog', 'information_schema')
             AND n.nspname !~ '^pg_toast'
-            AND c.relkind IN ('r', 'm', 'i')
+            #{schema.present? ? "AND n.nspname = '#{schema}'" : ''}
+            AND c.relkind IN (#{filtered_type})
           ORDER BY
             pg_table_size(c.oid) DESC,
             2 ASC
         SQL
       end
 
-      def table_sizes
+      def table_sizes(schema: nil)
         select_all_size <<~SQL
           SELECT
             n.nspname AS schema,
@@ -39,7 +54,28 @@ module PgHero
           WHERE
             n.nspname NOT IN ('pg_catalog', 'information_schema')
             AND n.nspname !~ '^pg_toast'
+            #{schema.present? ? "AND n.nspname = '#{schema}'" : ''}
             AND c.relkind = 'r'
+          ORDER BY
+            pg_total_relation_size(c.oid) DESC,
+            2 ASC
+        SQL
+      end
+
+      def index_sizes
+        select_all_size <<~SQL
+          SELECT
+            n.nspname AS schema,
+            c.relname AS table,
+            pg_total_relation_size(c.oid) AS size_bytes
+          FROM
+            pg_class c
+          LEFT JOIN
+            pg_namespace n ON n.oid = c.relnamespace
+          WHERE
+            n.nspname NOT IN ('pg_catalog', 'information_schema')
+            AND n.nspname !~ '^pg_toast'
+            AND c.relkind = 'i'
           ORDER BY
             pg_total_relation_size(c.oid) DESC,
             2 ASC
