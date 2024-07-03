@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+
+gemspec path: ".."
+
+gem "minitest", ">= 5"
+gem "rake"
+
+gem "activerecord", "~> 7.0.0"
+gem "combustion"
+gem "pg"
+gem "pg_query", "~> 4"
+gem "google-protobuf", "< 4"
