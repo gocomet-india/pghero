@@ -6,7 +6,7 @@
 
 html {
   box-sizing: border-box;
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
 *, *:before, *:after {
@@ -15,7 +15,7 @@ html {
 
 body {
   margin: 0;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #eee;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 a, a:visited, a:active {
-  color: #428bca;
+  color: #293d6d;
   text-decoration: none;
 }
 
@@ -57,8 +57,9 @@ h2 {
 }
 
 h1 small {
-  font-weight: normal;
-  font-size: 14px;
+  font-weight:bold;
+  font-size: 20px;
+
   color: #999;
 }
 
@@ -118,7 +119,6 @@ hr {
 }
 
 .container {
-  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -261,7 +261,7 @@ hr {
 }
 
 .btn-info {
-  background-color: #5bc0de;
+  background-color: #293d6d;
 }
 
 /* alerts */
@@ -272,19 +272,27 @@ hr {
 }
 
 .alert-info {
-  background-color: #5bc0de;
+  background-color: #293d6d;
 }
 
 .alert-success {
-  background-color: #5cb85c;
+  background-color: #43C59E;
 }
 
 .alert-warning {
-  background-color: #f0ad4e;
+  background-color: #FD9843;
 }
 
 .alert-danger {
   background-color: #d9534f;
+}
+
+.center-align {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100%; /* Adjust as needed */
+  text-align: center;
 }
 
 .alert a {
@@ -449,7 +457,7 @@ body {
 
 .noUi-connect {
   box-shadow: none;
-  background: #5bc0de;
+  background: #293d6d;
 }
 
 .noUi-handle {
