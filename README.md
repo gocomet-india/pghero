@@ -2,7 +2,29 @@
 
 A performance dashboard for Postgres
 
+
+### Overview
 [![Screenshot](app/assets/images/pghero/pghero.png)](https://pghero.dokkuapp.com/)
+
+### Space
+[![Screenshot](app/assets/images/pghero/CopyQ.OfReYN.png)](https://pghero.dokkuapp.com/)
+
+
+### Connections
+[![Screenshot](app/assets/images/pghero/CopyQ.nxhoBc.png)](https://pghero.dokkuapp.com/)
+
+
+### Live Queries
+[![Screenshot](app/assets/images/pghero/CopyQ.ProBKs.png)](https://pghero.dokkuapp.com/)
+
+### Maintenance
+[![Screenshot](app/assets/images/pghero/CopyQ.ycvwIO.png)](https://pghero.dokkuapp.com/)
+
+### Explain
+[![Screenshot](app/assets/images/pghero/CopyQ.QFlLKk.png)](https://pghero.dokkuapp.com/)
+
+### Tune
+[![Screenshot](app/assets/images/pghero/CopyQ.Xsheoh.png)](https://pghero.dokkuapp.com/)
 
 
 
