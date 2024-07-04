@@ -1,5 +1,5 @@
 <div class="content">
-  <h1>Space</h1>
+  <h1>SPACE</h1>
 
   <p>Database Size: <%= @database_size %></p>
 
@@ -40,16 +40,21 @@
   <% end %>
 
   <%= form_with method: :get do |form| %>
-    <div>
+
+    <div class="cont"> 
+
+    <div class="some">
       <%= form.label :schema, "Choose a schema:" %>
       <%= form.select :schema, options_for_select(@all_schemas, @schema) %>
     </div>
-    <div>
+    <div class="some">
       <%= form.label :type, "Choose a Type:" %>
       <%= form.select :type, options_for_select(['table', 'index'], @type) %>
     </div>
 
-    <div>
+    </div>
+
+    <div class="sub-btn">
       <%= form.submit "Submit" %>
     </div>
   <% end %>

@@ -6,6 +6,8 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
+
   /* font-size: 14px; */
 }
 
@@ -17,6 +19,7 @@ body {
   margin: 0;
   /* padding: 20px; */
   background-color: #eee;
+  height: 100%;
 }
 
 body {
@@ -28,6 +31,8 @@ body {
 a, a:visited, a:active {
   color: #293d6d;
   text-decoration: none;
+  border-radius: 10px;
+  margin-top: 5px;
 }
 
 a:hover {
@@ -138,6 +143,7 @@ hr {
 }
 
 .btn-explain {
+border-radius: 10px;
   background: none;
   border: none;
   padding: 0;
@@ -150,6 +156,7 @@ hr {
 }
 
 .btn-explain:hover {
+border-radius: 10px;
   text-decoration: underline;
 }
 
@@ -173,9 +180,15 @@ hr {
   margin-bottom: 20px;
 }
 
+#status, .content {
+  border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
 .content {
   padding: 20px 20px 1px 20px;
   background-color: #fff;
+  border-radius: 10px;
 }
 
 .queries td {
@@ -183,7 +196,9 @@ hr {
 }
 
 #status div {
-  margin-bottom: 0;
+border-radius: 10px;
+
+  margin-bottom: 5px;
 }
 
 #slider-container {
@@ -221,11 +236,15 @@ hr {
 }
 
 .nav li.active a {
-  background-color: #ddd;
+  background-color: rgb(229, 231, 241);
+  border: 1px #293d6d solid;
+  
 }
 
 .nav a:hover {
-  background-color: #ddd;
+  background-color: rgb(229, 231, 241);
+  border: 1px #293d6d solid;
+
 }
 
 .nav li.active-database a {
@@ -234,14 +253,15 @@ hr {
 
 .nav-header {
   font-weight: bold;
-  color: #333;
-  padding: 12px 20px 12px 0;
+  color: #293d6d;
+  padding: 20px 20px 12px 0;
   margin: 0;
 }
 
 /* buttons */
 
 .btn {
+border-radius: 10px;
   display: inline-block;
   border: none;
   color: #fff;
@@ -257,10 +277,12 @@ hr {
 }
 
 .btn-danger {
+border-radius: 10px;
   background-color: #d9534f;
 }
 
 .btn-info {
+border-radius: 10px;
   background-color: #293d6d;
 }
 
@@ -286,6 +308,19 @@ hr {
 .alert-danger {
   background-color: #d9534f;
 }
+
+
+/* .alert-success {
+  background-color: #77BA99;
+}
+
+.alert-warning {
+  background-color: #d3693f;
+}
+
+.alert-danger {
+  background-color: #D33F49;
+} */
 
 .center-align {
   display: flex;
@@ -336,6 +371,7 @@ body {
 
   margin: 0 auto;
   overflow: hidden;
+  padding-right: 20px;
 }
 
 .grid:after {
@@ -374,7 +410,13 @@ body {
 }
 
 .col-1-4, .col-3-12 {
-  width: 25%;
+  width: 23%;
+  padding-left: 20px;
+  background-color: #fff;
+  height: 100vh;
+  margin:0 20px;
+  border-radius: 10px;
+  position: fixed;
 }
 
 .col-1-5 {
@@ -421,6 +463,7 @@ body {
 
 .col-9-12 {
   width: 75%;
+  margin-left: 25%;
 }
 
 .col-5-12 {
@@ -526,7 +569,9 @@ body {
 }
 
 .duplicate-indexes td {
-  padding: 15px 0 5px 0;
+  padding: 15px 0px 5px 10px;
+  border-radius: 10px;
+  border: none;
 }
 
 .duplicate-indexes pre {
@@ -626,3 +671,102 @@ a.relation-link {
   color: #f0ad4e;
   background-color: #333;
 }
+
+
+.typewriter h1 {
+  padding-left: 450px;
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typewriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 5s steps(30, end) infinite,
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  0% { width: 0 }
+  45%, 55% { width: 100% }
+  100% { width: 0 }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
+
+
+table tr:nth-child(even) {
+  background-color: rgb(229, 231, 241); 
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff; 
+}
+
+table td{
+margin: 0 5px ;
+}
+
+.some{
+  display: flex;
+  flex-direction: column;
+  margin-right:40px ;
+}
+
+.cont{
+  display: flex;
+}
+
+.some label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.some select {
+  width: 150px;
+  padding: 3px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23ccc" d="M2 0L0 2h4zM2 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px;
+}
+
+.some select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.sub-btn input[type="submit"] {
+  background: linear-gradient(to right, #293d6d, #293d6d); /* Green gradient background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Get the element to behave like an inline element */
+  margin: 4px 2px; /* Margin */
+  cursor: pointer; /* Pointer/hand icon */
+  border-radius: 5px; /* Rounded corners */
+  transition: background 0.3s ease; /* Smooth transition for background */
+}
+
+.sub-btn{
+  margin: 10px 0;
+}
+
+

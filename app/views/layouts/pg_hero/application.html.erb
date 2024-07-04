@@ -24,17 +24,21 @@
           Do not use development information to make decisions about your production environment
         <% else %>
         <div class="center-align">
-        <%= link_to root_path do %>
-          <%= image_tag "/assets/pghero/logo.png", alt: "Example Image", class: "image-class", width: "100", height: "40" %>
-        <% end %>
+          <%= link_to root_path do %>
+            <%= image_tag "/assets/pghero/logo.png", alt: "Example Image", class: "image-class", width: "100", height: "40" %>
+          <% end %>
+          <% end %>
+          <div class="typewriter">
+          <h1>Postegres Observability GoComet</h1>
           </div>
-        <% end %>
+
+        </div>
       </div>
 
       <div class="grid">
         <div class="col-3-12">
           <% if @databases.size > 1 %>
-            <p class="nav-header"><%= @database.name %></p>
+            <p class="nav-header"><%= @database.name.upcase %></p>
           <% end %>
 
           <ul class="nav">
@@ -59,7 +63,7 @@
           </ul>
 
           <% if @databases.size > 1 %>
-            <p class="nav-header">Databases</p>
+            <p class="nav-header">DATABASES</p>
             <ul class="nav">
               <% @databases.each do |database| %>
                 <li class="<%= ("active-database" if @database.id == database.id) %>">
